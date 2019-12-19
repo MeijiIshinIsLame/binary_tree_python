@@ -1,32 +1,26 @@
-
-
 class Node:
-    
     
     def __init__(self, data):
         self.left = None
         self.right = None
-        self.data = data
-        
+        self.data = data 
 
     def insert(self, data):
         
         if (data <= self.data):
 
-            if(self.left is None):
-                self.left = Node(data)
-            else:
+            if(self.hasleft()):
                 self.left.insert(data)
+            else:
+                self.left = Node(data)
 
-                
         elif (data > self.data):
 
-            if(self.right is None):
-                self.right = Node(data)
-            else:
+            if(self.hasright()):
                 self.right.insert(data)
+            else:
+                self.right = Node(data)
                 
-
     def hasleft(self):
         if self.left is not None:
             return True
@@ -37,7 +31,6 @@ class Node:
             return True
         return False
     
-        
 
 def height(node):
 
