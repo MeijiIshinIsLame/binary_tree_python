@@ -86,10 +86,10 @@ def make2d_list(rows, cols):
     return [ ([0] * cols) for row in range(rows) ]
 
 def create_matrix(node):
-    x = get_max_nodes(height(node))
+    x = get_max_nodes(height(node)) * 2
     x += x-1 #spaces inbetween
     
-    y = height(node)
+    y = height(node) * 2
 
     #y starts at 0, so add 1
     return make2d_list(y + 1, x)
@@ -102,10 +102,12 @@ def populate_matrix(node, matrix, xpos, ypos):
     matrix[ypos][xpos] = node.data
 
     if node.hasleft():
-        populate_matrix(node.left, matrix, xpos-1, ypos+1)
+        matrix[ypos+1][xpos-1] = ","
+        populate_matrix(node.left, matrix, xpos-2, ypos+2)
 
     if node.hasright():
-        populate_matrix(node.right, matrix, xpos+1, ypos+1)
+        matrix[ypos+1][xpos+1] = "`"
+        populate_matrix(node.right, matrix, xpos+2, ypos+2)
 
     return matrix
 
